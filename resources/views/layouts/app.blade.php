@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/resources/css/app.css">
 </head>
 <body>
+@include('inc.navbar')
+
 @yield('content')
 
 @include('inc.aside')
