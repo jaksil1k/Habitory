@@ -5,7 +5,7 @@
 
 .main{
     width: 100%;
-    background:url(http://localhost/webBackend/resources/images/img1.jpg);
+    background:url(http://localhost/Habitory/resources/images/img1.jpg);
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -568,7 +568,7 @@ p{
 }
 .main2{
     width: 100%;
-    background:url(http://localhost/webBackend/resources/images/img1.jpg);
+    background:url(http://localhost/Habitory/resources/images/img1.jpg);
     background-position: center;
     background-size: cover;
     height: 10vh;
