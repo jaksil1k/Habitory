@@ -2,20 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::group(['namespace' => 'App\Http\Controllers'], function (){
 
-Route::get('/categories', function () {
-    return view('categories');
-})->name('categories');
+    Route::get('/', 'StartController@home')->name('home');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+    Route::get('/create-habit', 'UserController@userPanel')->name('create-habit');
+});
 
-Route::get('/create-habit', function () {
-    return view('create-habit');
-})->name('create-habit');
-
-Route::post('/register/submit', 'RegisterController@submit')->name('register-form');
