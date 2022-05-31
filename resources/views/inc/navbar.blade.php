@@ -25,6 +25,9 @@
                             <a class="nav-link" href="{{route("logout")}}">Logout</a>
                         @endauth
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("contact_form")}}">contact form</a>
+                </li>
 
             </ul>
             <form class="d-flex">

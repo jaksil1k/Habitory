@@ -27,6 +27,10 @@ class AuthController extends Controller
         return view("auth.register");
     }
 
+    public function showForgotForm(){
+        return view("auth.forgot");
+    }
+
     public function login(Request $request){
         $data = $request->validate([
             "email" => ["required", "email", 'string', "exists:users,email"],
@@ -58,6 +62,23 @@ class AuthController extends Controller
         if ($user) {
             auth("web")->login($user);
         }
+
+        return redirect(route('home'));
+    }
+
+    public function forgot(Request $request){
+        $data = $request->validate([
+            "email" => ["required", "string", "exists:users"],
+        ]);
+
+        $user = User::where(["email"=>$data["email"]])->first();
+
+        $password = uniqid();
+
+        $user->$password = bcrypt($password);
+        $user->save();
+
+        Mail::to($user)->send(new ForgotPassword($password));
 
         return redirect(route('home'));
     }

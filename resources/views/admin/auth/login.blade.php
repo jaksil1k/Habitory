@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form class="row g-3" method="POST" action="{{route("login_process")}}">
+    <form class="row g-3" method="POST" action="{{route("admin.login_process")}}">
         @csrf
 
         <div class="mb-3">
@@ -12,12 +12,6 @@
             <label for="exampleFormControlPassword" class="form-label">Password</label>
             <input name="password" type="password" class="form-control" id="exampleFormControlPassword" placeholder="Password">
         </div>
-
-        <div>
-            <a href="{{ route("forgot") }}" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Забыли пароль?</a>
-        </div>
-
-        <a href="{{route("register")}}">Not registered yet?</a>
         <button type="submit" class="btn btn-primary">LOG IN</button>
     </form>
 @endsection
