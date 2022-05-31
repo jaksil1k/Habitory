@@ -10,4 +10,8 @@ class StartController extends Controller
     public function home(){
         return view('home');
     }
+
+    public function categories(){
+        return view('categories');
+    }
 }

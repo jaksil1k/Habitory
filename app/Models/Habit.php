@@ -17,7 +17,7 @@ class Habit extends Model
         "days"
     ];
 
-    public function users(){
-        $this->belongsTo(User::class);
+    public function user(){
+        return $this->hasOne(User::class, "id", "user_id");
     }
 }

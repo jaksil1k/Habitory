@@ -49,7 +49,6 @@
             border-top: none;
         }
 
-
     </style>
 @endsection
 
@@ -57,11 +56,6 @@
 <header class="header">
     <div>
         <h5 id="h5">Habit</h5>
-    </div>
-
-    <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Active')">Active</button>
-        <button class="tablinks" onclick="openCity(event, 'Archive')">Archived</button>
     </div>
 
     <div>
@@ -85,48 +79,69 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <div  class="row">
-                    <label for="habitName" class="col-sm-3 col-form-label">Habit Name</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Daily Check-in" maxlength="64" value="" name="habitName">
+                <form method="POST" action="">
+                    @csrf
+                    <div  class="row">
+                        <label for="habitName" class="col-sm-3 col-form-label">Habit Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Daily Check-in" maxlength="64" value="" name="habitName">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <label for="quantity" class="col-sm-3 col-form-label">Frequency</label>
-                    <div class="col-sm-6">
-                        <input type="number" name="quantity" min="1" max="7" placeholder="Days per week" class="form-control">
+                    <div class="row">
+                        <label for="quantity" class="col-sm-3 col-form-label">Frequency</label>
+                        <div class="col-sm-6">
+                            <input type="number" name="quantity" min="1" max="7" placeholder="Days per week" class="form-control">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <label for="goal" class="col-sm-3 col-form-label">Goal</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" value="Achive it all" name="goal">
+                    <div class="row">
+                        <label for="goal" class="col-sm-3 col-form-label">Goal</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" value="Achive it all" name="goal">
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="row">
-                    <label for="goalDays" class="col-sm-3 col-form-label">Goal</label>
-                    <div class="col-sm-6">
-                        <input type="number" name="goalDays" min="1" max="365" placeholder="1-365" class="form-control">
+                    <div class="row">
+                        <label for="goalDays" class="col-sm-3 col-form-label">Goal</label>
+                        <div class="col-sm-6">
+                            <input type="number" name="goalDays" min="1" max="365" placeholder="1-365" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 mb-20">
-    @foreach($habits as $habit)
-        <ul>
-            {{$habit->name}}
-        </ul>
-    @endforeach
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Habit name</th>
+            <th scope="col">days per a week</th>
+            <th scope="col">goal</th>
+            <th scope="col">duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{$i = 1}}
+        @foreach($habits as $habit)
+          @if($habit->user_id == auth()->user()->id)
+              <tr>
+                  <th scope="row">{{$i}}</th>{{$i++}}
+                  <td>{{$habit->name}}</td>
+                  <td>{{$habit->quantity}}</td>
+                  <td>{{$habit->goal}}</td>
+                  <td>{{$habit->days}}</td>
+              </tr>
+          @endif
+        @endforeach
+    </tbody>
+</table>
 @endsection
